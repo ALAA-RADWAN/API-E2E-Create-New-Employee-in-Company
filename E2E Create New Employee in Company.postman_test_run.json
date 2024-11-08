@@ -1,0 +1,231 @@
+{
+	"id": "3b487b50-d50e-4464-a767-38748f635b15",
+	"name": "E2E Create New Employee in Company",
+	"timestamp": "2024-11-08T19:25:05.311Z",
+	"collection_id": "38599744-923bfaf2-7668-45c8-b01e-31bfd5d00b0f",
+	"folder_id": 0,
+	"environment_id": "38599744-54f63431-cd9d-44db-8186-cff53f032569",
+	"totalPass": 14,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-11-08T19:25:03.654Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "594bb914-3b03-4b4f-992d-90b9006dc2cf",
+			"name": "All Employees",
+			"url": "https://672cfe57fd897971564105b7.mockapi.io/employee",
+			"time": 286,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify that the Status code is 200": true,
+				"Verify that the Response time is less than 2000ms": true
+			},
+			"testPassFailCounts": {
+				"Verify that the Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify that the Response time is less than 2000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				286
+			],
+			"allTests": [
+				{
+					"Verify that the Status code is 200": true,
+					"Verify that the Response time is less than 2000ms": true
+				}
+			]
+		},
+		{
+			"id": "7f1fa5f8-8abe-4884-a772-f04f093d54e8",
+			"name": "Create Employee",
+			"url": "https://672cfe57fd897971564105b7.mockapi.io/employee",
+			"time": 225,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Verify that the Status code is 201": true,
+				"Verify that the Response time is less than 2000ms": true,
+				"Check if the name is Omar": true,
+				"Check if the address is grays": true
+			},
+			"testPassFailCounts": {
+				"Verify that the Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify that the Response time is less than 2000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check if the name is Omar": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check if the address is grays": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				225
+			],
+			"allTests": [
+				{
+					"Verify that the Status code is 201": true,
+					"Verify that the Response time is less than 2000ms": true,
+					"Check if the name is Omar": true,
+					"Check if the address is grays": true
+				}
+			]
+		},
+		{
+			"id": "6f97e6a4-7c0a-4c5d-a1bc-4bc63d17eb63",
+			"name": "Edit Employee",
+			"url": "https://672cfe57fd897971564105b7.mockapi.io/employee/21",
+			"time": 103,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify that the Status code is 200": true,
+				"Verify that the Response time is less than 2000ms": true,
+				"Verify that the new name is Alaa": true
+			},
+			"testPassFailCounts": {
+				"Verify that the Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify that the Response time is less than 2000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify that the new name is Alaa": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				103
+			],
+			"allTests": [
+				{
+					"Verify that the Status code is 200": true,
+					"Verify that the Response time is less than 2000ms": true,
+					"Verify that the new name is Alaa": true
+				}
+			]
+		},
+		{
+			"id": "e9d142f9-e85c-4b75-985a-311e72339503",
+			"name": "Delete Employee",
+			"url": "https://672cfe57fd897971564105b7.mockapi.io/employee/21",
+			"time": 116,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify that the the id is exist": true,
+				"Verify that the Status code is 200": true,
+				"Verify that the Response time is less than 2000ms": true
+			},
+			"testPassFailCounts": {
+				"Verify that the the id is exist": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify that the Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify that the Response time is less than 2000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				116
+			],
+			"allTests": [
+				{
+					"Verify that the the id is exist": true,
+					"Verify that the Status code is 200": true,
+					"Verify that the Response time is less than 2000ms": true
+				}
+			]
+		},
+		{
+			"id": "3ad64703-5da9-4090-b516-f7953a19505a",
+			"name": "One Employee",
+			"url": "https://672cfe57fd897971564105b7.mockapi.io/employee/21",
+			"time": 99,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify that the Status code is 404": true,
+				"Verify that the Response time is less than 2000ms": true
+			},
+			"testPassFailCounts": {
+				"Verify that the Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify that the Response time is less than 2000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				99
+			],
+			"allTests": [
+				{
+					"Verify that the Status code is 404": true,
+					"Verify that the Response time is less than 2000ms": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 829,
+	"collection": {
+		"requests": [
+			{
+				"id": "594bb914-3b03-4b4f-992d-90b9006dc2cf",
+				"method": "GET"
+			},
+			{
+				"id": "7f1fa5f8-8abe-4884-a772-f04f093d54e8",
+				"method": "POST"
+			},
+			{
+				"id": "6f97e6a4-7c0a-4c5d-a1bc-4bc63d17eb63",
+				"method": "PUT"
+			},
+			{
+				"id": "e9d142f9-e85c-4b75-985a-311e72339503",
+				"method": "DELETE"
+			},
+			{
+				"id": "3ad64703-5da9-4090-b516-f7953a19505a",
+				"method": "GET"
+			}
+		]
+	}
+}

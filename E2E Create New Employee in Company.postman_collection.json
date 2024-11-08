@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "923bfaf2-7668-45c8-b01e-31bfd5d00b0f",
+		"name": "E2E Create New Employee in Company",
+		"description": "**Applying CRUD operation:**\n\n1-Retrieve all employees to see them.\n\n2- Create new employee.\n\n3- Edit the address and name.\n\n4- Delete the employee.\n\n5- try to retrieve him to be sure that he is deleted.\n\n**My test cases:**\n\n1-Verify the Status codes.  \n2-Verify the Response time .\n\n3- check the employee name by (Response body Contains string).\n\n4-check the employee address and new name by (Response body, json value check).\n\n**Variables:**\n\nCollection id Variable is **EmployeeID**\n\nEnviroment URL Variable is **MainURLForEmployees**",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38599744"
+	},
+	"item": [
+		{
+			"name": "All Employees",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that the Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify that the Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{MainURLForEmployees}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that the Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Verify that the Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"JsonFile = pm.response.json();\r",
+							"var responseBody= JsonFile.id;\r",
+							"pm.collectionVariables.set(\"EmployeeID\", responseBody);\r",
+							"\r",
+							"pm.test(\"Check if the name is Omar\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Omar\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check if the address is grays\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.address).to.eql(\"grays\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"address\": \"grays\",\r\n    \"name\": \"Omar\",\r\n    \"car\": \"BMW\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{MainURLForEmployees}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that the Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+							"\r",
+							"pm.test(\"Verify that the Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that the new name is Alaa\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Alaa\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"address\": \"Grays\",\r\n    \"name\": \"Alaa\",\r\n    \"car\": \"BMW\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{MainURLForEmployees}}/:id",
+					"host": [
+						"{{MainURLForEmployees}}"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{EmployeeID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that the the id is exist\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData.id).to.exist;\r",
+							"});\r",
+							"pm.test(\"Verify that the Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify that the Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{MainURLForEmployees}}/:id",
+					"host": [
+						"{{MainURLForEmployees}}"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{EmployeeID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that the Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"Verify that the Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{MainURLForEmployees}}/:id",
+					"host": [
+						"{{MainURLForEmployees}}"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{EmployeeID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "MainURLForEmployees",
+			"value": "https://672cfe57fd897971564105b7.mockapi.io/employee",
+			"disabled": true
+		},
+		{
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "EmployeeID",
+			"value": ""
+		}
+	]
+}
