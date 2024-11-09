@@ -1,4 +1,4 @@
-# API-E2E-Create-New-Employee-in-Company
+# API-End to End-Create-New-Employee-in-Company
 __Applying CRUD operation__
 * Retrieve all employees to see them.
 * Create new employee.
